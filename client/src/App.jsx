@@ -43,7 +43,7 @@ const App = () => {
 
 
   return (
-    <div className='bg-gray-500' style={{overflow:"hidden"}}>
+    <div className='bg-gray-500' style={{ overflow: "hidden" }}>
       <h1 className="text-6xl font-italic text-white font-bold text-center bg-black bg-opacity-75  py-2">Codabra</h1>
       <h1 className="text-2xl font-italic text-white-opacity-10 font-bold text-center bg-black bg-opacity-70 py-2">Using OpenAI</h1>
 

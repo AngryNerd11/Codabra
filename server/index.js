@@ -2,6 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import translate from './routes/translate.js'
+import fixbug from './routes/fixbug.js';
 dotenv.config();
 
 const app = express();
@@ -13,6 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/translate', translate);
+app.use('/api/fixbug', fixbug);
 
 const startServer = () => {
     try {
