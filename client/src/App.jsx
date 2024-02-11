@@ -72,8 +72,9 @@ const App = () => {
           <Output language={language} code={output} />
         </div>
       </div>
-
+    <div className='mt-2'>
       <Footer />
+    </div>
     </div>
   );
 };

@@ -14,10 +14,11 @@ const footerStyle = {
   color: '#fff',
   textAlign: 'center',
   padding: '1rem',
-  position: 'fixed',
+  position: 'relative',
   left: '0',
   bottom: '0',
   width: '100%'
+  
 };
 
 const textStyle = {
