@@ -1,11 +1,14 @@
-import React from 'react'
-
+import React, { useState } from 'react';
+import Editor from './components/Editor';
 const App = () => {
-  return (
-    <h1 className="text-5xl text-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+  const [code, setCode] = useState('');
 
-export default App
+
+  return (
+    <div className=''>
+
+    </div>
+  );
+};
+
+export default App;
