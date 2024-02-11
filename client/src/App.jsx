@@ -12,10 +12,12 @@ const App = () => {
   }
   const code = useSelector(state => state.code.code);
   const languageEd = useSelector(state => state.code.language);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     console.log(languageEd);
   }, [languageEd]);
   const translate = async () => {
+    setLoading(true);
     if (!code) {
       alert('Please enter some code');
       return;
@@ -33,10 +35,12 @@ const App = () => {
     });
     const data = (await res.text()).trim();
     setOutput(data);
+    setLoading(false);
   }
   const handleClick = () => {
 
     translate();
+
   }
 
 
@@ -67,7 +71,7 @@ const App = () => {
       <div className='flex flex-col items-center  h-screen'>
         <button className=" bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-10 mt-4"
           onClick={handleClick}>
-          Run
+          {loading ? 'Translating...' : 'Translate'}
         </button>
       </div>
     </div>
