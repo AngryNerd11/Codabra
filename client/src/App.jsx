@@ -2,23 +2,43 @@ import React, { useState, useEffect, createContext } from 'react';
 import Editor from './components/Editor';
 import Output from './components/Output';
 import { useSelector } from 'react-redux';
-import { selectCode } from './redux/codeSlice';
-const MyContext = createContext();
+
 const App = () => {
 
   const [language, setLanguage] = useState('python');
-
+  const [output, setOutput] = useState('');
   const langSelect = (e) => {
     setLanguage(e.target.value);
   }
-  const [dataFromChild, setDataFromChild] = useState(null);
-  const handleDataChange = (newData) => {
-    setDataFromChild(newData);
-  };
-
-  const handleClick = () => {
-    console.log(dataFromChild);
+  const code = useSelector(state => state.code.code);
+  const languageEd = useSelector(state => state.code.language);
+  useEffect(() => {
+    console.log(languageEd);
+  }, [languageEd]);
+  const translate = async () => {
+    if (!code) {
+      alert('Please enter some code');
+      return;
+    }
+    if (language === languageEd) {
+      alert('Please select a different language');
+      return;
+    }
+    const res = await fetch('http://localhost:8080/api/translate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code, language })
+    });
+    const data = (await res.text()).trim();
+    setOutput(data);
   }
+  const handleClick = () => {
+
+    translate();
+  }
+
 
   return (
     <div className='bg-gray-500'>
@@ -28,9 +48,7 @@ const App = () => {
       <div className="flex justify-center px-4 mt-3">
         <div className="w-1/2 mr-4 px-4">
           <h2 className="text-2xl font-bold mb-4">Editor</h2>
-          <MyContext.Provider value={{ dataFromChild, handleDataChange }}>
-            <Editor />
-          </MyContext.Provider>
+          <Editor />
         </div>
         <div className="w-1/2 mr-4 px-2">
           <h2 className="text-2xl font-bold mb-4">Output</h2>
@@ -43,7 +61,7 @@ const App = () => {
               <option value='rust'>Rust</option>
             </select>
           </div>
-          <Output language={language} code={"hello"} />
+          <Output language={language} code={output} />
         </div>
       </div>
       <div className='flex flex-col items-center  h-screen'>

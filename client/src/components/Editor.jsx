@@ -7,15 +7,14 @@ import { rust } from '@codemirror/lang-rust';
 import { python } from '@codemirror/lang-python';
 import { javascript } from '@codemirror/lang-javascript';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCode, selectCode } from '../redux/codeSlice';
+import { setCode,setLanguage } from '../redux/codeSlice';
 const Editor = () => {
-    const [code, setCode] = useState('');
-    const [language, setLanguage] = useState('javascript');
+    const [newCode, setNewCode] = useState('');
+    const [languageEd, setLanguageEd] = useState('javascript');
     const [extensions, setExtensions] = useState(javascript());
-    const { handleDataChange } = useContext(MyContext);
 
     useEffect(() => {
-        switch (language) {
+        switch (languageEd) {
             case 'javascript':
                 setExtensions(javascript());
                 break;
@@ -35,16 +34,19 @@ const Editor = () => {
                 setExtensions(javascript());
                 break;
         }
-    }, [language]);
+    }, [languageEd]);
+    const dispatch = useDispatch();
     const langSelect = (e) => {
-        setLanguage(e.target.value);
+        setLanguageEd(e.target.value);
+        dispatch(setLanguage(e.target.value));
     }
-
+    const count = useSelector(state => state.code.code);
+    console.log(count);
     return (
         <div>
             <div >
                 <div >
-                    <select value={language} onChange={langSelect}>
+                    <select value={languageEd} onChange={langSelect}>
                         <option value='javascript'>JavaScript</option>
                         <option value='python'>Python</option>
                         <option value='cpp'>C++</option>
@@ -53,10 +55,11 @@ const Editor = () => {
                     </select>
                 </div>
                 <CodeMirror
-                    value={code}
+                    value={newCode}
                     onChange={(value) => {
-                        setCode(value)
-                        handleDataChange(value)
+                        setNewCode(value);
+                        console.log(value);
+                        dispatch(setCode(value))
                     }}
                     height='80vh'
                     extensions={extensions}
