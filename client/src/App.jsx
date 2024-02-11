@@ -38,9 +38,7 @@ const App = () => {
     setLoading(false);
   }
   const handleClick = () => {
-
     translate();
-
   }
 
 
@@ -69,7 +67,7 @@ const App = () => {
         </div>
       </div>
       <div className='flex flex-col items-center  h-screen'>
-        <button className=" bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-10 mt-4"
+        <button disabled={loading} en className=" bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-10 mt-4"
           onClick={handleClick}>
           {loading ? 'Translating...' : 'Translate'}
         </button>
