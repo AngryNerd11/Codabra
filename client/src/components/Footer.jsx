@@ -3,7 +3,7 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer style={footerStyle}>
-        <p>Made with 💖 | By ANGRY NERDS</p>
+        <p>💪Powered By ANGRY NERDS</p>
       <p style={textStyle}>© 2024 CODABRA. All rights reserved</p>
     </footer>
   );
