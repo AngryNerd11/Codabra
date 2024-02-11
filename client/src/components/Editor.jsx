@@ -61,7 +61,7 @@ const Editor = () => {
                         console.log(value);
                         dispatch(setCode(value))
                     }}
-                    height='80vh'
+                    height='72.1vh'
                     extensions={extensions}
                     theme='dark'
                 />

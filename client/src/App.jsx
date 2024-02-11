@@ -43,7 +43,7 @@ const App = () => {
 
 
   return (
-    <div className='bg-gray-500'>
+    <div className='bg-gray-500' style={{overflow:"hidden"}}>
       <h1 className="text-6xl font-italic text-white font-bold text-center bg-black bg-opacity-75  py-2">Codabra</h1>
       <h1 className="text-2xl font-italic text-white-opacity-10 font-bold text-center bg-black bg-opacity-70 py-2">Using OpenAI</h1>
 
@@ -66,7 +66,7 @@ const App = () => {
           <Output language={language} code={output} />
         </div>
       </div>
-      <div className='flex flex-col items-center  h-screen'>
+      <div className='flex flex-col items-center'>
         <button disabled={loading} en className=" bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-10 mt-4"
           onClick={handleClick}>
           {loading ? 'Translating...' : 'Translate'}
