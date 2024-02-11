@@ -24,7 +24,7 @@ const App = () => {
       alert('Please select a different language');
       return;
     }
-    const res = await fetch('http://localhost:8080/api/translate', {
+    const res = await fetch('https://codabra.onrender.com/api/translate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
