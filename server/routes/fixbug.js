@@ -9,7 +9,7 @@ const router = express.Router();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 router.get('/', (req, res) => {
-    res.send('Translate route');
+    res.send('Hello from fixbug route');
 });
 
 

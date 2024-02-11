@@ -3,6 +3,7 @@ import Editor from '../components/Editor';
 import Output from '../components/Output';
 
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Translate = () => {
   const [language, setLanguage] = useState('python');
@@ -20,6 +21,7 @@ const Translate = () => {
     setLoading(true);
     if (!code) {
       alert('Please enter some code');
+      setLoading(false);
       return;
     }
     if (language === languageEd) {
@@ -43,33 +45,34 @@ const Translate = () => {
 
   return (
     <>
-        <div className="flex-grow flex justify-center items-center mt-8">
-          <div className="w-full md:w-1/2 px-4">
-            <h2 className="text-2xl font-bold mb-4">EDITOR</h2>
-            <Editor />
-          </div>
-          <div className="w-full md:w-1/2 px-4">
-            <h2 className="text-2xl font-bold mb-4">OUTPUT</h2>
-            <div className="flex justify-between items-center mb-4">
-              <select className="p-2 rounded border" value={language} onChange={langSelect}>
-                <option value='javascript'>JavaScript</option>
-                <option value='python'>Python</option>
-                <option value='cpp'>C++</option>
-                <option value='java'>Java</option>
-                <option value='rust'>Rust</option>
-              </select>
-              <div className="">
-                <button disabled={loading} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded"
-                  onClick={handleClick}>
-                  {loading ? 'Translating...' : 'Translate'}
-                </button>
-              </div>
+      <div className="flex-grow flex justify-center items-center mt-8">
+        <div className="w-full md:w-1/2 px-4">
+          <h2 className="text-2xl font-bold mb-4">EDITOR</h2>
+          <Editor />
+        </div>
+        <div className="w-full md:w-1/2 px-4">
+          <h2 className="text-2xl font-bold mb-4">OUTPUT</h2>
+          <div className="flex justify-between items-center mb-4">
+            <select className="p-2 rounded border" value={language} onChange={langSelect}>
+              <option value='javascript'>JavaScript</option>
+              <option value='python'>Python</option>
+              <option value='cpp'>C++</option>
+              <option value='java'>Java</option>
+              <option value='rust'>Rust</option>
+            </select>
+            <div className="">
+              <button disabled={loading} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded"
+                onClick={handleClick}>
+                {loading ? 'Translating...' : 'Translate'}
+              </button>
+              <Link to='/bugfix'> <button className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded ml-2">Bug Fix</button></Link>
             </div>
-            <Output language={language} code={output} />
           </div>
+          <Output language={language} code={output} />
         </div>
-        <div className='mt-2'>
-        </div>
+      </div>
+      <div className='mt-2'>
+      </div>
     </>
   );
 };
