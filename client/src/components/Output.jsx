@@ -36,7 +36,7 @@ const Output = ({ code, language }) => {
             <div >
                 <CodeMirror
                     value={code}
-                    height='72.1vh'
+                    height='64vh'
                     extensions={extensions}
                     theme='dark'
                 />
