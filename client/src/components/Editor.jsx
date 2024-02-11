@@ -45,8 +45,8 @@ const Editor = () => {
     return (
         <div>
             <div >
-                <div >
-                    <select value={languageEd} onChange={langSelect}>
+                <div className='p-2'>
+                    <select className='p-2 rounded border' value={languageEd} onChange={langSelect}>
                         <option value='javascript'>JavaScript</option>
                         <option value='python'>Python</option>
                         <option value='cpp'>C++</option>
@@ -61,7 +61,7 @@ const Editor = () => {
                         console.log(value);
                         dispatch(setCode(value))
                     }}
-                    height='72.1vh'
+                    height='64vh'
                     extensions={extensions}
                     theme='dark'
                 />
