@@ -6,9 +6,7 @@ import { java } from '@codemirror/lang-java';
 import { rust } from '@codemirror/lang-rust';
 import { python } from '@codemirror/lang-python';
 import { javascript } from '@codemirror/lang-javascript';
-const Output = () => {
-    const [code, setCode] = useState('');
-    const [language, setLanguage] = useState('javascript');
+const Output = ({ code, language }) => {
     const [extensions, setExtensions] = useState(javascript());
 
     useEffect(() => {
@@ -33,37 +31,15 @@ const Output = () => {
                 break;
         }
     }, [language]);
-    const langSelect = (e) => {
-        setLanguage(e.target.value);
-    }
-    const check = () => {
-        console.log(language)
-        console.log(extensions)
-    }
     return (
         <div>
             <div >
-                <div >
-                    <select value={language} onChange={langSelect}>
-                        <option value='javascript'>JavaScript</option>
-                        <option value='python'>Python</option>
-                        <option value='cpp'>C++</option>
-                        <option value='java'>Java</option>
-                        <option value='rust'>Rust</option>
-                    </select>
-                </div>
                 <CodeMirror
                     value={code}
-                    onChange={(value) => {
-                        setCode(value);
-                    }}
                     height='80vh'
                     extensions={extensions}
                     theme='dark'
                 />
-                <button onClick={check}>
-                    Run
-                </button>
             </div>
         </div>
     )

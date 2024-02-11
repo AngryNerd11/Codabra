@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import React from 'react'
 import CodeMirror from '@uiw/react-codemirror';
 import { cpp } from '@codemirror/lang-cpp';
@@ -6,10 +6,13 @@ import { java } from '@codemirror/lang-java';
 import { rust } from '@codemirror/lang-rust';
 import { python } from '@codemirror/lang-python';
 import { javascript } from '@codemirror/lang-javascript';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCode, selectCode } from '../redux/codeSlice';
 const Editor = () => {
     const [code, setCode] = useState('');
     const [language, setLanguage] = useState('javascript');
     const [extensions, setExtensions] = useState(javascript());
+    const { handleDataChange } = useContext(MyContext);
 
     useEffect(() => {
         switch (language) {
@@ -36,10 +39,7 @@ const Editor = () => {
     const langSelect = (e) => {
         setLanguage(e.target.value);
     }
-    const check = () => {
-        console.log(language)
-        console.log(extensions)
-    }
+
     return (
         <div>
             <div >
@@ -55,15 +55,13 @@ const Editor = () => {
                 <CodeMirror
                     value={code}
                     onChange={(value) => {
-                        setCode(value);
+                        setCode(value)
+                        handleDataChange(value)
                     }}
                     height='80vh'
                     extensions={extensions}
                     theme='dark'
                 />
-                <button onClick={check}>
-                    Run
-                </button>
             </div>
         </div>
     )
