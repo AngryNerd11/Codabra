@@ -42,17 +42,10 @@ const App = () => {
   }
 
   return (
-<<<<<<< HEAD
+
     <div className='bg-gray-500' style={{ overflow: "hidden" }}>
       <h1 className="text-6xl font-italic text-white font-bold text-center bg-black bg-opacity-75  py-2">Codabra</h1>
       <h1 className="text-2xl font-italic text-white-opacity-10 font-bold text-center bg-black bg-opacity-70 py-2">Using OpenAI</h1>
-=======
-    <div className='flex flex-col'>
-      <header className="bg-gradient-to-r from-blue-500 to-teal-500 text-white py-8 text-center">
-        <h1 className="text-6xl font-bold">Codabra</h1>
-        <h2 className="text-2xl font-bold">Using OpenAI</h2>
-      </header>
->>>>>>> fffe3cedf0657df951ec600e4f20b853c1fe738c
 
       <div className="flex-grow flex justify-center items-center mt-8">
         <div className="w-full md:w-1/2 px-4">
